@@ -10,4 +10,5 @@ router.post('/register',user.registerPaitent);
 router.post('/:id/create_report',passport.authenticate('jwt',{session:false}),report.createReport);
 
 router.get('/:id/all_reports',report.pateintReports);
+
 module.exports=router;

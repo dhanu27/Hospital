@@ -10,7 +10,6 @@ let opts = {
 }
 
 passport.use(new passportJWTstrategy(opts, function(jwt_payload, done) {
-    console.log("PayLoad",jwt_payload);
     User.findById(jwt_payload._id, function(err, user) {
         if (err) { console.log("%%%%%%%%%%%%Error in finding user JWT" ,err); return ;}
         if (user) {

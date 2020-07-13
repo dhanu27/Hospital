@@ -16,7 +16,15 @@ const userSchema=new mongoose.Schema({
     profession:{
         type:String
     }
-},{timestamps:true});
-
+},{timestamps:true}
+ );
+userSchema.options.toObject={};
+userSchema.options.toObject.transform =function(doc,ret,options){
+          delete ret.password;
+          delete ret.createdAt;
+          delete ret.updatedAt;
+          delete ret.__v;
+       return ret;   
+}
 const user=mongoose.model('user',userSchema);
 module.exports=user;

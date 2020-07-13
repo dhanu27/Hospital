@@ -1,6 +1,10 @@
 const User=require('../models/user');
-const JSONwebtoken=require('jsonwebtoken');
+const jwt=require('jsonwebtoken');
+const { use } = require('../config/passport-jwt');
 
+const toObject=function(Object ,ret){
+  delete ret.password
+}
 // function to register a Doctor
 module.exports.registerDoctor=async function(req,res){
       try{
@@ -22,11 +26,13 @@ module.exports.registerDoctor=async function(req,res){
             } 
          // register the new doctor     
         else{  
+          
           req.body.profession='Doctor'
           user=await User.create(req.body);
+          console.log(user.toObject());
           return res.status('200').json({
             meassage:"sucessfully Registered a Doctor",
-            data:user
+            data:user.toObject()
           });
         }  
       }catch(err){
@@ -42,9 +48,7 @@ module.exports.login=async function(req,res){
     try{
       // If doctor exist or not
         let user=await User.findOne({phone:req.body.phone});
-        
         if(!user||user.password!=req.body.password){
-            console.log(user);
           res.status(422).json({
                   message:"Invalid phoneno./password"
           }); 
@@ -53,7 +57,7 @@ module.exports.login=async function(req,res){
        else{
            res.status(200).json({
                data:{
-                   token:JSONwebtoken.sign(user.toJSON(),"Hospital",{expiresIn:10000})
+                   token:jwt.sign(user.toJSON(),"Hospital",{expiresIn:'1h'})
                }
            })
        } 
