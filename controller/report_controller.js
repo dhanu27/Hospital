@@ -37,14 +37,9 @@ module.exports.pateintReports=async function(req,res){
             },
             {
                 $sort : { createdAt: -1 }
-              },
+            },
             {$project: {_id:"$pateint_id" , obj: "$obj" }},
             ]);
-        console.log(reportsobj);
-        reports=await Report.populate(reports,{path:'obj'},
-                                                   {path:'doctor_id'});
-        // });
-        console.log(reports);
         res.status(200).json({
             message:"Success",
             data:{
