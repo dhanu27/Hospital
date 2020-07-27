@@ -79,7 +79,7 @@ module.exports.registerPaitent=async function(req,res){
       // If already exist return details of patient
       if(patient){
         return res.status(200).json({
-          mesaage:"Already exist",
+          message:"Already exist",
           data:{
             patient:patient
           }
@@ -93,19 +93,22 @@ module.exports.registerPaitent=async function(req,res){
           profession:"Patient"
         });
         return res.status(200).json({
-          mesaage:"Sucessfully register a patient",
+          message:"Sucessfully register a patient",
           data:{
             patient:patient
           }
         });
       }
     }catch(err){
-      console.log("Error in Register patient",err);
-     return res.status(504).json({
-        message:"Internal server error",
-      });
+      console.log("Error in register",err);
+      res.send(err);
+    //  return res.status(504).json({
+    //     message:"Internal server error",
+    //   });
 
     }
 }
+
+
 
 

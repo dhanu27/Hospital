@@ -19,9 +19,10 @@ module.exports.createReport=async function(req,res){
         });
     }catch(err){
         console.log("Error in creating Rport",err);
-        return res.status(540).json({
-             message:"Internal Server Error"
-        })   
+        res.send(err);
+        // return res.status(540).json({
+        //      message:"Internal Server Error"
+        // })   
     }
 }
 
@@ -43,11 +44,12 @@ module.exports.pateintReports=async function(req,res){
         res.status(200).json({
             message:"Success",
             data:{
-                report:reports 
+                report:reports[0].obj 
             }
         });
     }catch(err){
         console.log("Error in getting patient Report",err);
+        res.send(err);
         res.status(540).json({
             message:"Internal Server Error"
         });

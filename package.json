@@ -3,9 +3,19 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1",
+    "mocha": "^2.5.3"
+  },
   "scripts": {
-    "test": "'"
+    "start": "SET NODE_ENV=test && node index.js",
+    "test": "mocha --timeout 10000"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.3.1",
+    "morgan": "^1.10.0"
+  }
 }
