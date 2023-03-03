@@ -6,7 +6,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
-    "mocha": "^2.5.3"
+    "mocha": "^10.2.0"
   },
   "scripts": {
     "start": "SET NODE_ENV=test && node index.js",
